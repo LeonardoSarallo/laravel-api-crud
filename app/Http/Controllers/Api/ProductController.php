@@ -27,5 +27,45 @@ class ProductController extends Controller
     $newProduct = new Product;
     $newProduct->fill($validatedData);
     $newProduct->save();
+    return response()->json($newProduct);
+  }
+
+  public function show($id)
+  {
+    $product = Product::find($id);
+    if (empty($product))
+    {
+      return response()->json([
+        'error' => 'id inesistente'
+      ]);
+    }
+    return response()->json($product);
+  }
+  public function update(Request $request, $id)
+  {
+    $data = $request->all();
+    $product = Product::find($id);
+    if (empty($product))
+    {
+      return response()->json([
+        'error' => 'id inesistente'
+      ]);
+    }
+    $product->update($data);
+
+    return response()->json($product);
+  }
+
+  public function destroy($id)
+  {
+    $product = Product::find($id);
+    if (empty($product))
+    {
+      return response()->json([
+        'error' => 'id inesistente'
+      ]);
+    }
+    $product->delete();
+    return response()->json([]);
   }
 }

@@ -18,6 +18,12 @@ Route::get('/', function() {
 });
 
 //rotta products index
-Route::get('/products', 'Api\ProductController@index');
+Route::get('/products', 'Api\ProductController@index')->middleware('api.auth');
 //rotta products create
-Route::post('/products', 'Api\ProductController@create');
+Route::post('/products', 'Api\ProductController@create')->middleware('api.auth');
+//rotta product show
+Route::get('/products/{id}', 'Api\ProductController@show')->middleware('api.auth');
+//rotta products modifica
+Route::post('/products/{id}', 'Api\ProductController@update')->middleware('api.auth');
+//rotta products cancella
+Route::post('/products/{id}/delete', 'Api\ProductController@destroy')->middleware('api.auth');
