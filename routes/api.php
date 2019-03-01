@@ -27,3 +27,16 @@ Route::get('/products/{id}', 'Api\ProductController@show')->middleware('api.auth
 Route::post('/products/{id}', 'Api\ProductController@update')->middleware('api.auth');
 //rotta products cancella
 Route::post('/products/{id}/delete', 'Api\ProductController@destroy')->middleware('api.auth');
+
+//--------------------
+
+//rotta categories index
+Route::get('/categories', 'Api\CategoryController@index')->middleware('api.auth');
+//rotta categories Create
+Route::post('/categories', 'Api\CategoryController@create')->middleware('api.auth');
+//rotta categories show
+Route::get('/categories/{id}', 'Api\CategoryController@show')->middleware('api.auth');
+//rotta categories modifica
+Route::post('/categories/{id}', 'Api\CategoryController@update')->middleware('api.auth');
+//rotta products cancella
+Route::post('/categories/{id}/delete', 'Api\CategoryController@destroy')->middleware('api.auth');
